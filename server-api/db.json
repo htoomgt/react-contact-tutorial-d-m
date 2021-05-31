@@ -1,5 +1,14 @@
 {
-    "contacts" : [
-
-    ]
+  "contacts": [
+    {
+      "id": "e33d70ee-58a9-4f6c-bb14-34e6e1991e2d",
+      "name": "John Doe",
+      "email": "johndoe@gmail.com"
+    },
+    {
+      "id": "bb395ae7-e2d8-4caa-bb48-418003a4fe6d",
+      "name": "Max",
+      "email": "max@gmail.com"
+    }
+  ]
 }
