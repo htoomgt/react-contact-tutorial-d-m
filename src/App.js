@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import ContactDetail from './components/ContactDetail';
 import ContactDeleteConfirm from './components/ContactDeleteConfirm'
 import api from './api/Contact'
+import EditContact from './components/EditContact'
 
 
 
@@ -31,10 +32,31 @@ function App() {
             ...contact
         }
         const response =  await api.post("/contacts", request);
-        console.log(response);
 
         setContacts([...contacts, response.data]);
     };
+
+    const updateContactHandler = async (contact) => {
+        // console.log(contact);
+
+        const response = await api.put(`/contacts/${contact.id}`, contact);
+
+        // const {id, name, email} = response.data;
+        // setContacts(
+        //     contacts.map((contact) => {
+        //         return contact.id == id ? {...response.data} : contact;
+        //     })
+        // )
+
+        const getAllCOntacts = async () => {
+            const allContacts = await retrieveContacts();
+            if (allContacts) setContacts(allContacts);
+        };
+
+        getAllCOntacts();
+
+
+    }
 
     useEffect(() => {
 
@@ -109,6 +131,16 @@ function App() {
                             removeContact={removeCotnactHandler} />
                     )}
 
+                />
+
+                <Route
+                    path="/edit/"
+                    render={(props)  => (
+                        <EditContact
+                            {...props}
+                            updateContact={updateContactHandler}
+                        />
+                    )}
                 />
 
 
